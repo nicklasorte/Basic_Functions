@@ -138,7 +138,7 @@ if isnumeric(apiKey)
     if exist('api_key.mat','file')
         load api_key
     else
-        apiKey = '';
+        apiKey = ''
     end
 end
 
@@ -220,7 +220,7 @@ if nargin >= 2
             case 'autoaxis'
                 autoAxis = varargin{idx+1};
             case 'apikey'
-                apiKey = varargin{idx+1}; % set new key
+                apiKey = varargin{idx+1} % set new key
                 % save key to file
                 funcFile = which('plot_google_map.m');
                 pth = fileparts(funcFile);
