@@ -3,8 +3,9 @@ function ParForWaitbarProgressMH_time(h,NbrePts,Msg,start_time)
 % NbrePts: Number of Steps 
 % Msg: Waitbar's Message Field
 
-% Get the Fractional Length of the Waitbar 
-x = get(h,'UserData');
+% Get the Fractional Length of the Waitbar (increment first so the first
+% callback reflects 1 completed step, avoiding division-by-zero when x==0)
+x = get(h,'UserData') + 1;
 
 %%%%%%Update the Message with Estmated Time
 sec_elap=etime(clock,start_time);  % the total elapsed time
@@ -48,7 +49,7 @@ waitbar(percentage,h,temp_Msg);
 % Progress Indicator as a Percentage
 set(h,'Name',sprintf('%.0f%%',percentage*100))
 
-% Update the Fractional Length of the Waitbar 
-set(h,'UserData',x+1)
+% Update the Fractional Length of the Waitbar
+set(h,'UserData',x)
 
 end
