@@ -1,6 +1,6 @@
 function ParForWaitbarProgressMH_time(h,NbrePts,Msg,start_time)
 % h: Handle of the Waitbar
-% NbrePts: Number of Steps 
+% NbrePts: Number of Steps  
 % Msg: Waitbar's Message Field
 
 
@@ -51,7 +51,7 @@ waitbar(percentage,h,temp_Msg);
 set(h,'Name',sprintf('%.0f%%',percentage*100))
 
 % Update the Fractional Length of the Waitbar 
-set(h,'UserData',x+1)
+set(h,'UserData',x)
 
 end
 

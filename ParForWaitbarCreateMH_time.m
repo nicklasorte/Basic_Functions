@@ -2,7 +2,7 @@ function [hWaitbar,hWaitbarMsgQueue]= ParForWaitbarCreateMH_time(Msg,NbrePts)
 
 %%%% Create the Waitbar
 hWaitbar = waitbar(0,Msg);
-
+ 
 %%% Initialize the Fractional Length of the Waitbar 
 set(hWaitbar,'UserData',0)
 
