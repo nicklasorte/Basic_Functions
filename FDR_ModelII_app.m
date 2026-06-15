@@ -24,6 +24,9 @@ BW_RX = [-array_rx_if flip(array_rx_if(1:(find(array_rx_if==0,1)-1)))]';
 Mask_TX = [array_tx_mask flip(array_tx_mask(1:(find(array_tx_mask==0,1)-1)))]';
 Reject_RX = -[array_rx_insert_loss flip(array_rx_insert_loss(1:(find(array_rx_insert_loss==0,1)-1)))]';
 
+ED = [ BW_TX, Mask_TX];
+VD = [ BW_RX, Reject_RX];
+
 %Calculate BandWidths
 idx1 = find(BW_RX == 0,1);
 RXidx = idx1-1;
@@ -115,8 +118,7 @@ end
 OTR = min(FDR_dB);
 BW_TX
 Mask_TX
-ED = [ BW_TX, Mask_TX];
-VD = [ BW_RX, Reject_RX];
+
 
 ind_fdr_loss=nearestpoint_app(app,freq_sep,DeltaFreq);
 single_fdr_loss=FDR_dB(ind_fdr_loss);
