@@ -30,20 +30,24 @@ end
 
 function y = convertOne(v)
 
-    if isnumeric(v) && isscalar(v)
-        y = double(v);
-        return
+y = NaN;
+if isnumeric(v) && isscalar(v)
+    y = double(v);
+end
+
+if isstring(v) || ischar(v)
+    s = string(v)
+    % Remove ALL whitespace characters
+    s = regexprep(s, '\s+', '')
+    code = double(s);
+    ok   = (code>=48 & code<=57) | ismember(code, double('+-.eEdD'))
+    %s = regexp(s, '[\d\.]+', 'match', 'once')
+    y = str2double(s)
+    if isempty(y)
+        'empty y'
+        pause;
     end
+end
 
-    if isstring(v) || ischar(v)
-        s = string(v);
 
-        % Remove ALL whitespace characters
-        s = regexprep(s, '\s+', '');
-
-        y = str2double(s);
-        return
-    end
-
-    y = NaN;
 end

@@ -42,12 +42,13 @@ while(retry_save==1)
     end
 end
 disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: Saved Checkout Flag: Line 44'))
+disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: Line 45:',cell_status_filename))
+disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: Line 46:',sim_folder))
 
 % end
 %tf_checkout
-
-
 %%%%%%%%%%%%%%%%%Load cell_status
+disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: Line 51'))
 retry_exists=1;
 while(retry_exists==1)
     try
@@ -58,9 +59,11 @@ while(retry_exists==1)
         pause(1)
     end
 end
+disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: Line 62'))
 
 
 if cell_status_exist==2 %%%%%%%%Load
+    disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: Line 66'))
     retry_load=1;
     while(retry_load==1)
         try
@@ -72,27 +75,33 @@ if cell_status_exist==2 %%%%%%%%Load
             %%%%%%%%%%%%%%%%%%%it just keeps trying to load.
         end
     end
-    disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: cell_status loaded: Line 61'))
+    disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: cell_status loaded: Line 78'))
 else
-    [num_folders,~]=size(folder_names);
-    cell_status=cell(num_folders,2); %%%%Name and 0/1
-    cell_status(:,1)=folder_names;
+    disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: Line 80'))
+    [num_folders,~]=size(folder_names)
+    disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: Line 82'))
+    cell_status=cell(num_folders,2) %%%%Name and 0/1
+    disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: Line 84'))
+    cell_status(:,1)=folder_names
+    disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: Line 86'))
     zero_cell=cell(1);
+    disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: Line 88'))
     zero_cell{1}=0;
-    cell_status(:,2)=zero_cell;
+    disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: Line 90'))
+    cell_status(:,2)=zero_cell
+    disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: Line 92'))
     tf_update_cell_status=1;  %%%%%%%If we're creating a new one, we need to save it.
-    disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: Creating NEW cell_status: Line 82'))
+    disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: Creating NEW cell_status: Line 94'))
 end
-
+disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: Line 96'))
 
 %%%%%%%%%%%Update and Save cell_status
 if tf_update_cell_status==1
+    disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: Line 100'))
     %%%%%Find the idx
     temp_cell_idx=strcmp(cell_status(:,1),sim_folder)==1;
-
     %%%%%%%Update the Cell
     cell_status(temp_cell_idx,2)={1};
-
     %%%%%Save the Cell
     retry_save=1;
     while(retry_save==1)
@@ -104,8 +113,9 @@ if tf_update_cell_status==1
             pause(2)
         end
     end
-    disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: cell_status SAVED: Line 105'))
+    disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: cell_status SAVED: Line 113'))
 end
+disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: Line 115'))
 
 %%%%%%%%%%%%Checkout
 %%%%%%Delete checkout
@@ -118,13 +128,14 @@ while(tf_delete==1)
         tf_delete=1;
     end
 end
+disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: Line 128'))
 
 
 tf_checkout=exist(checkout_filename,'file');
 if tf_checkout==1
-    disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: PAUSE: Check out ERROR at end.'))
+    disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: PAUSE: Check out ERROR at end. Line 133'))
     pause;
 end
-disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: Exiting Checking Out: Line 126'))
+disp_TextArea_PastText(app,strcat('checkout_cell_status_rev1: Exiting Checking Out: Line 136'))
 
 end
